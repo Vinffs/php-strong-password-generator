@@ -1,5 +1,6 @@
 <?php
 
+
 function passGenerator()
 {
   $symbols = '!?&%$<>^+-*/()[]{}@#_=';
@@ -7,7 +8,7 @@ function passGenerator()
   $upLetters = strtoupper($letters);
   $numbers = '0123456789';
 
-  if (isset($_GET['passLength'])) {
+  if (isset($_GET['passLength']) && $_GET['passLength'] != "") {
 
     $length = $_GET['passLength'];
     $password = '';
@@ -18,11 +19,24 @@ function passGenerator()
 
       $password .= $randomCharacters;
     }
-    return $password;
+    return "Your generated password is: $password";
+
+  } else if (isset($_GET['submit']) && $_GET['passLength'] === '') {
+    return 'You must choose between 8 and 20 characters to generate your password';
+  }
+}
+
+function colorMessage()
+{
+  if (isset($_GET['submit']) && $_GET['passLength'] != '') {
+    return 'alert-success';
+  } else {
+    return 'alert-danger';
   }
 }
 
 $generatedPass = passGenerator();
+$colorMsg = colorMessage();
 
 
 ?>
@@ -54,23 +68,23 @@ $generatedPass = passGenerator();
 
   <main class="container py-5">
     <?php if (isset($_GET['passLength'])) { ?>
-      <div class="alert alert-success">
-        <h2>Your Generated Password is:
-          <?php echo $generatedPass ?>
-        </h2>
-      </div>
+    <div class="alert <?php echo $colorMsg ?>">
+      <h2>
+        <?php echo $generatedPass ?>
+      </h2>
+    </div>
     <?php } ?>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
       <input type="number" min="8" max="20" name="passLength">
-      <button type="submit">Genera </button>
-      <button type="reset">Reset</button>
+      <button type="submit" name="submit">Genera </button>
+      <button type="reset" name="reset">Reset</button>
     </form>
   </main>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+  </script>
 </body>
 
 </html>
