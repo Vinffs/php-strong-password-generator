@@ -1,5 +1,30 @@
 <?php
 
+function passGenerator()
+{
+  $symbols = '!?&%$<>^+-*/()[]{}@#_=';
+  $letters = 'abcdefghijklmnopqrstuvwxyz';
+  $upLetters = strtoupper($letters);
+  $numbers = '0123456789';
+
+  if (isset($_GET['passLength'])) {
+
+    $length = $_GET['passLength'];
+    $password = '';
+
+    while (strlen($password) < $length) {
+      $characters = $symbols . $letters . $upLetters . $numbers;
+      $randomCharacters = $characters[rand(0, strlen($characters) - 1)];
+
+      $password .= $randomCharacters;
+    }
+    return $password;
+  }
+}
+
+$generatedPass = passGenerator();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -23,13 +48,24 @@
 </head>
 
 <body>
-  <header>
+  <header class="container py-4">
     <h1>Strong Password Generator</h1>
   </header>
 
-  <main></main>
-
-  <footer></footer>
+  <main class="container py-5">
+    <?php if (isset($_GET['passLength'])) { ?>
+      <div class="alert alert-success">
+        <h2>Your Generated Password is:
+          <?php echo $generatedPass ?>
+        </h2>
+      </div>
+    <?php } ?>
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
+      <input type="number" min="8" max="20" name="passLength">
+      <button type="submit">Genera </button>
+      <button type="reset">Reset</button>
+    </form>
+  </main>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
