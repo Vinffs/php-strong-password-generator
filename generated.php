@@ -1,13 +1,6 @@
 <?php
 session_start();
-
-include __DIR__ . "/functions.php";
-
-$error = passGenerator();
-
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,20 +25,14 @@ $error = passGenerator();
   <header class="container py-4">
     <h1>Strong Password Generator</h1>
   </header>
+  <main class="container">
+    <div class="alert alert-success">
+      <h2>
+        <?php echo $_SESSION['password'] ?>
+      </h2>
+    </div>
 
-  <main class="container py-5">
-    <?php if (isset($_GET['passLength'])) { ?>
-      <div class="alert alert-danger">
-        <h2>
-          <?php echo $error ?>
-        </h2>
-      </div>
-    <?php } ?>
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
-      <input type="number" min="8" max="20" name="passLength">
-      <button type="submit" name="submit">Genera </button>
-      <button type="reset" name="reset">Reset</button>
-    </form>
+    <a href="index.php" class="btn btn-info">Return</a>
   </main>
 
   <!-- Bootstrap JS -->

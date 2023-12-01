@@ -17,19 +17,12 @@ function passGenerator()
 
       $password .= $randomCharacters;
     }
-    return "Your generated password is: $password";
+    $_SESSION['password'] = "Your generated password is: $password";
+    header('Location: generated.php');
 
   } else if (isset($_GET['submit']) && $_GET['passLength'] === '') {
     return 'You must choose between 8 and 20 characters to generate your password';
   }
 }
 
-function colorMessage()
-{
-  if (isset($_GET['submit']) && $_GET['passLength'] != '') {
-    return 'alert-success';
-  } else {
-    return 'alert-danger';
-  }
-}
 ?>
