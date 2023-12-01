@@ -16,20 +16,20 @@ session_start();
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- link to Font-Family and CSS Files -->
-  <link rel="stylesheet" href="" />
+  <link rel="stylesheet" href="./style/style.css" />
   <!-- Document Title -->
   <title>Strong Password Generator</title>
 </head>
 
-<body>
-  <header class="container py-4">
-    <h1>Strong Password Generator</h1>
+<body class="bg">
+  <header class="container py-4 mt-4 text-center">
+    <h1 class="title">Strong Password Generator</h1>
   </header>
   <main class="container">
     <div class="alert alert-success">
-      <h2>
+      <h5>
         <?php echo $_SESSION['password'] ?>
-      </h2>
+      </h5>
     </div>
 
     <a href="index.php" class="btn btn-info">Return</a>

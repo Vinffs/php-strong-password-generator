@@ -1,0 +1,32 @@
+:root {
+  --bg-color: #001632;
+  --h1-color: #808B99;
+  --bg-form: #F8F9FA;
+  --bg-result: #CFF4FC;
+  --bg-submit: #0D6EFD;
+  --bg-reset: #6C757D;
+}
+
+.bg {
+  background-color: var(--bg-color);
+}
+
+.title {
+  color: var(--h1-color);
+}
+
+.subtitle {
+  color: var(--bg-form)
+}
+
+.background {
+  background-color: var(--bg-form);
+}
+
+.blue-btn {
+  background-color: var(--bg-submit);
+}
+
+.return-btn {
+  background-color: var(--bg-reset);
+}
