@@ -11,11 +11,36 @@ function passGenerator()
     $length = $_GET['passLength'];
     $password = '';
 
-    while (strlen($password) < $length) {
+    $characters = '';
+    if (count($_GET['characters']) === 3) {
       $characters = $symbols . $letters . $upLetters . $numbers;
-      $randomCharacters = $characters[rand(0, strlen($characters) - 1)];
+    } else if (in_array('letters', $_GET['characters']) && in_array('numbers', $_GET['characters'])) {
+      $characters = $letters . $upLetters . $numbers;
+    } else if (in_array('symbols', $_GET['characters']) && in_array('numbers', $_GET['characters'])) {
+      $characters = $symbols . $numbers;
+    } else if (in_array('symbols', $_GET['characters']) && in_array('letters', $_GET['characters'])) {
+      $characters = $symbols . $letters . $upLetters;
+    } else if (in_array('letters', $_GET['characters'])) {
+      $characters = $letters . $upLetters;
+    } else if (in_array('numbers', $_GET['characters'])) {
+      $characters = $numbers;
+    } else if (in_array('symbols', $_GET['characters'])) {
+      $characters = $symbols;
+    }
 
-      $password .= $randomCharacters;
+
+    while (strlen($password) < $length) {
+      $randomCharacters = $characters[rand(0, strlen($characters) - 1)];
+      if (!$_GET['repeated']) {
+        if (!str_contains($password, $randomCharacters)) {
+          $password .= $randomCharacters;
+        }
+      } else {
+        $password .= $randomCharacters;
+      }
+
+
+
     }
     $_SESSION['password'] = "Your generated password is: $password";
     header('Location: generated.php');

@@ -42,10 +42,47 @@ $error = passGenerator();
       </div>
     <?php } ?>
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
-      <input type="number" min="8" max="20" name="passLength">
-      <button type="submit" name="submit">Genera </button>
-      <button type="reset" name="reset">Reset</button>
+      <div>
+        <input type="number" min="8" max="20" name="passLength">
+        <button type="submit" name="submit">Genera </button>
+        <button type="reset" name="reset">Reset</button>
+      </div>
+      <div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="repeated" id="yes" value="1">
+          <label class="form-check-label" for="yes">
+            Si
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="repeated" id="no" value="0">
+          <label class="form-check-label" for="no">
+            No
+          </label>
+        </div>
+      </div>
+      <div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="characters[]" value="letters" id="letters">
+          <label class="form-check-label" for="letters">
+            Lettere
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="characters[]" value="numbers" id="numbers">
+          <label class="form-check-label" for="numbers">
+            Numeri
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="characters[]" value="symbols" id="symbols">
+          <label class="form-check-label" for="symbols">
+            Simboli
+          </label>
+        </div>
+      </div>
     </form>
+
   </main>
 
   <!-- Bootstrap JS -->
